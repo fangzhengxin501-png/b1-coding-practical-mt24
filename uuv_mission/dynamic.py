@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import numpy as np
 import matplotlib.pyplot as plt
 from .terrain import generate_reference_and_limits
+import pandas as pd
 
 class Submarine:
     def __init__(self):
