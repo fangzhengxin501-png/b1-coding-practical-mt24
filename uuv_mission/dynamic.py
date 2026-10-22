@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import numpy as np
 import matplotlib.pyplot as plt
 from .terrain import generate_reference_and_limits
+import pandas as pd
 
 class Submarine:
     def __init__(self):
@@ -82,7 +83,7 @@ class Mission:
         cave_depth = data["cave_depth"].to_numpy()
 
         return cls(reference, cave_height, cave_depth)
-        pass
+      
 
 
 class ClosedLoop:
@@ -99,6 +100,8 @@ class ClosedLoop:
         positions = np.zeros((T, 2))
         actions = np.zeros(T)
         self.plant.reset_state()
+        self.controller.reset()  #reset the controller state if it has any internal state
+
 
         for t in range(T):
             positions[t] = self.plant.get_position()
